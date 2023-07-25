@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai tap function</title>
+</head>
+<body>
+    <script>
+// Bài 1: Viết hàm cho người dùng nhập 2 số. Tính tổng 2 số đó
+function sum(a,b) {
+    return a+b
+}
+console.log(sum(1,1)); /// trả về kết quả là 2;
+
+// Bài 2: Viết một hàm nhận một chuỗi làm đối số và trả về độ dài của chuỗi.
+
+function arrLength(params) {
+ let check = Array.isArray(params);/// kiểm tra xem đối số có phải mảng ko?
+ let result;
+if (check) {
+  result = params.length;
+}else {
+ result = -1;
+}
+return result;
+}
+
+
+ console.log(arrLength([9,1,1])); /// trả về kết quả là 3;
+ console.log(arrLength("aaa"));/// trả về kết quả là -1;
+
+// Bài 3: Viết một hàm nhận một mảng các chuỗi làm đối số và trả về mảng mới chứa các chuỗi viết hoa.
+
+function toUpper (params) {
+
+let check = Array.isArray(params); /// kiểm tra xem đối số có phải mảng ko?
+let result=[]
+if (check) {
+    for (let index = 0; index < params.length; index++) {
+        let upperCase;
+     if ( typeof params[index] != "string") {
+        upperCase = undefined;
+     }else{
+         upperCase = params[index].toUpperCase()   
+        }
+        result.push(upperCase);  
+        
+    }
+}else {
+    result = undefined;
+}
+
+return result;
+}
+
+console.log(toUpper(["hoa","nhàn","vy"]));  // trả về ['HOA', 'NHÀN', 'VY']
+// Bài 4: Viết một hàm nhận một chuỗi làm đối số và trả về chuỗi mới với các từ đảo ngược thứ tự.
+function reverse(str) {
+    let check = typeof str
+    let result ="";
+
+    if (check ==="string") {
+        for (let index = str.length-1; index >=0 ; index--) {
+            result+= str[index]
+        }
+
+    } else{
+        result = undefined;
+    }
+    return result;
+}
+
+ console.log(reverse("abcde")); ///// trả về kết quả là edcba
+
+// Bài 5: Viết một hàm nhận một mảng các số làm đối số và trả về mảng mới chứa các số đã sắp xếp theo thứ tự tăng dần.
+function increment(arr) {
+  let result=[];
+
+    while (arr.length>0) {
+      for (let index = 0; index < arr.length; index++) {
+       let min = findMin(arr)
+        result.push(min[0])
+       arr.splice(min[1],1)
+      } 
+  }
+  return result;
+}
+let arr = [3, 5, 1, 8, -3, 7, 8];
+
+let sortArr = increment(arr)
+console.log(sortArr);
+// hàm tìm phần tử nhỏ nhất trong mảng trả ra phần tử đó và vị trí cảu nó trong mảng
+function findMin(arr) {
+    let min = arr[0];
+    let minIndex = 0
+    for (let index = 1; index < arr.length; index++) {
+        if (arr[index]<min) {
+            min = arr[index];
+            minIndex = index
+        }    
+}
+    return [min,minIndex];
+}
+
+
+
+// Bài 6: Viết một hàm nhận một mảng các số làm đối số và trả về mảng mới chỉ chứa các số nguyên tố.
+
+function checkPrimeNum(num) {
+    let result = true;
+if (num >1 && num!=2) {
+  let breakPoint = Math.sqrt(num)
+    for (let index = 2; index <= breakPoint; index++) {
+       if (num % index==0) {
+        result = false;
+       }   
+    }
+} else if (num == 2){
+    result= true;
+}else{
+    result = false;
+}
+    return result;
+ }
+// hàm kiểm tra 1 mảng xem phân tử nào là số nguyên tố;
+ function checkPrimeNums(arr) {
+    let check = Array.isArray(arr);/// kiểm tra xem đối số có phải mảng ko?
+    let  result =[];
+    if (check) {
+        for (let index = 0; index < arr.length; index++) {
+       if (checkPrimeNum (arr[index])){
+            result.push(arr[index])
+       }
+        }
+    } else {result= undefined}
+    return result;
+ };
+let result1 = checkPrimeNums([2, 3, 5, 7, 11, 13, 9, 20, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, "aaaa", 73, 79, 83, 89, 97]);
+console.log(result1);///// trả về kết quả  [2, 3, 5, 7, 11, 13, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 73, 79, 83, 89, 97]
+let result2 = checkPrimeNums(1,2,2,3)
+console.log(result2);
+    </script>
+</body>
+</html>
